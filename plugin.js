@@ -1,9 +1,10 @@
 const Builder = Npm.require('opal-compiler').Builder;
 
-const builder = Builder.create();
 
 class OpalCompiler {
   processFilesForTarget(files) {
+    const builder = Builder.create();
+
     files.forEach((file) => {
       console.log(file);
       const output = builder.buildString(file.getContentsAsString()).toString();
