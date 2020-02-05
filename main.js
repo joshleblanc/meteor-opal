@@ -1,0 +1,1 @@
+import { Opal } from 'opal-runtime';

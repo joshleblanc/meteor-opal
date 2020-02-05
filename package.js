@@ -1,6 +1,6 @@
 Package.describe({
   name: 'cereal:meteor-opal',
-  version: '0.0.1',
+  version: '0.0.2',
   // Brief, one-line summary of the package.
   summary: '',
   // URL to the Git repository containing the source code for this package.
@@ -13,16 +13,21 @@ Package.describe({
 
 Package.registerBuildPlugin({
   name: "compileOpal",
-  use: [],
+  use: ['caching-compiler'],
   sources: [
-    'meteor-opal.js'
+    'plugin.js'
   ],
+  npmDependencies: {
+    "opal-compiler": "1.0.15"
+  }
 });
 
 
 Package.onUse(function(api) {
   api.versionsFrom('1.9');
-  api.mainModule('meteor-opal.js');
+  api.use("ecmascript");
+  api.use("isobuild:compiler-plugin")
+  api.mainModule('main.js');
 });
 
 Package.onTest(function(api) {
@@ -32,5 +37,5 @@ Package.onTest(function(api) {
 });
 
 Npm.depends({
-  "opal-compiler": "^1.0.15"
+  "opal-runtime": "1.0.14"
 });
