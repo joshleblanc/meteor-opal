@@ -21,15 +21,29 @@ Package.registerBuildPlugin({
     ]
 });
 
+Package.registerBuildPlugin({
+    name: "compileERB",
+    use: ['caching-compiler'],
+    sources: [
+        'opal/opal.js',
+        'opal/erb.js',
+        'plugin/erb.js'
+    ]
+});
+
 Package.onUse(function (api) {
     api.versionsFrom('1.9');
     api.addFiles([
         'opal/opal.js',
         'opal/native.js',
-        'opal/js.js'
+        'opal/js.js',
+        'opal/erb.js'
     ], ['client', 'server']);
     api.mainModule('lib/main.rb');
     api.addFiles('lib/meteor.rb');
     api.addFiles('lib/collection.rb');
+    api.addFiles('lib/controller.rb');
+    api.addFiles('lib/meteor_opal.rb');
+    api.addFiles('lib/tracker.rb');
     api.use("isobuild:compiler-plugin");
 });

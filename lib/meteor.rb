@@ -48,8 +48,10 @@ class Meteor
             meteor.release
         end
 
-        def publish(name, &block)
-            meteor.publish(name, block)
+        def publish(name)
+            meteor.publish(name) do
+                yield.to_n if block_given?
+            end
         end
 
         def subscribe(name, *params)
