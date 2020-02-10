@@ -12,6 +12,34 @@ class Collection
       collection.find(*args)
     end
 
+    def find_one(*args)
+      collection.findOne(*args)
+    end
+
+    def insert(*args)
+      collection.insert(*args) do |err, res|
+        yield err, res if block_given?
+      end
+    end
+
+    def upsert(*args)
+      collection.upsert(*args) do |err, res|
+        yield err, res if block_given?
+      end
+    end
+
+    def remove(*args)
+      collection.remove(*args) do |err, res|
+        yield err, res if block_given?
+      end
+    end
+
+    def update(*args)
+      collection.update(*args) do |err, res|
+        yield err, res if block_given?
+      end
+    end
+
     private
     def collections
       @@collections
@@ -21,5 +49,4 @@ class Collection
       collections[self.name]
     end
   end
-
 end
