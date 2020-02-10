@@ -56,6 +56,16 @@ class Meteor
             meteor.subscribe(name, *params)
         end
 
+        def methods(*args)
+            meteor.methods(*args)
+        end
+
+        def call(*args)
+            meteor.call(*args) do |err, res|
+                yield err, res if block_given?
+            end
+        end
+
         private
 
         def meteor
