@@ -17,7 +17,9 @@ Package.registerBuildPlugin({
     sources: [
         'opal/opal.js',
         'opal/opal-parser.js',
-        'plugin/plugin.js'
+        'plugin/plugin.js',
+        'opal/securerandom.js'
+
     ]
 });
 
@@ -37,7 +39,8 @@ Package.onUse(function (api) {
         'opal/opal.js',
         'opal/native.js',
         'opal/js.js',
-        'opal/erb.js'
+        'opal/erb.js',
+        'opal/securerandom.js'
     ], ['client', 'server']);
     api.mainModule('lib/main.rb');
     api.addFiles('lib/meteor.rb');

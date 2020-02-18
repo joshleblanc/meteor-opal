@@ -1,7 +1,7 @@
 class MeteorOpal
   class << self
     def mount(controller, element)
-      controller.new.render(element)
+      controller.new(element)
     end
   end
 end
